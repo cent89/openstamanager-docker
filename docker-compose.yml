@@ -1,0 +1,22 @@
+﻿version: "2.0"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+       - db_data:/var/lib/mysql
+    environment:
+           MYSQL_ROOT_PASSWORD: open
+           MYSQL_DATABASE: osm
+           MYSQL_USER: osm
+           MYSQL_PASSWORD: osm
+  app:
+    image: roberto/openstamanager:v0.1
+    container_name: openSTAmanager
+    ports:
+       - "8080:80"
+    links:
+       - db
+
+volumes:
+    db_data:
